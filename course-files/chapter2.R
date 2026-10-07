@@ -39,7 +39,7 @@ t.test(Table2.6$Tip1,Table2.6$Tip2) #not paired
 t.test(Table2.6$Tip1,Table2.6$Tip2,paired=TRUE) #paired
 
 #import BHH shoe example
-tab0305 <- read.csv("E:/ME488/BHHdata/tab0305.dat", sep="")
+tab0305 <- read.csv("course-files/BHHdata/tab0305.dat", sep="")
 tab0305
 t.test(tab0305$matA,tab0305$matB)
 t.test(tab0305$matA,tab0305$matB,paired=TRUE)
