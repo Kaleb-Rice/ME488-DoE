@@ -15,7 +15,7 @@ options(contrasts = c("contr.treatment", "contr.poly")) #reset R back to its def
 
 model.tables(aov(Observation ~ Power, data=Table3.1), type = "effects")
 
-water_pH <- read.csv("E:/ME488/RobsData/water_pH.txt")
+water_pH <- read.csv("course-files/RobsData/water_pH.txt")
 water_pH # Show data
 summary(aov(pH ~ brand, data=water_pH))  #create model object using aov
 
