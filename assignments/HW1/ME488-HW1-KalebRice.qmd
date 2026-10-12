@@ -1,0 +1,172 @@
+---
+title: "ME488 Homework 1"
+author: "Kaleb Rice"
+format: typst
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+## Chapter 2 Problems
+
+|      |                                                          |
+|------|----------------------------------------------------------|
+| 2.1  | Basic descriptive statistics / standard error / variance |
+| 2.7  | Normality + one-sample inference                         |
+| 2.10 | Interpreting hypothesis-test output                      |
+| 2.15 | Two-sample t-test output and interpretation              |
+| 2.19 | One-sample t-test in an engineering context              |
+| 2.20 | Normality assumption and robustness                      |
+| 2.21 | Full one-sample t-test + interpretation                  |
+| 2.23 | Two-sample comparison with known, unequal σ's            |
+| 2.25 | Two-sample inference / practical interpretation          |
+| 2.29 | Two-sample engineering experiment                        |
+
+## Problem 2.1
+
+**Problem Statement:**
+
+Computer output for a random sample of data is shown below. Some of the quantities are missing. Compute the values of the missing quantities.
+
+```{r}
+#| echo: false
+
+variableName <- c("Y")
+nn <- c(9)
+meanResult <- c(19.96)
+SEMeanResult <- c(NA)
+stdDevResult <- c(3.12)
+varianceResult <- c(NA)
+minResult <- c(15.94)
+maxResult <- c(27.16)
+
+# Data frame
+sampData <- data.frame(aa = variableName, 
+                       bb = nn, 
+                       cc = meanResult, 
+                       dd = SEMeanResult,
+                       ee = stdDevResult,
+                       ff = varianceResult,
+                       gg = minResult,
+                       hh = maxResult)
+colnames(sampData) <- c("Variable", "N", "Mean", "SE Mean", "Std. Dev.", "Variance", "Minimum", "Maximum")
+
+knitr::kable(sampData, format = "pipe", align = 'c')
+```
+
+## Problem 2.7
+
+**Problem Statement:**
+
+Consider the following sample data:
+
+```         
+9.37, 13.04, 11.69, 8.21, 11.18, 10.41, 13.15, 11.51, 13.21, 7.75
+```
+
+Is it reasonable to assume that this data is a sample from a normal distribution? Is there evidence to support a claim that the mean of the population is 10?
+
+## Problem 2.10
+
+**Problem Statement:**
+
+A two-sample t-test has been conducted and the sample
+sizes are $n_1 = n_2 = 10$. The computed value of the test statistic is to $t_0 = 2.15$. If the null hypothesis is two-sided, an upper bound on the P-value is:
+
+|            |            |             |            |                         |
+|------------|------------|-------------|------------|-------------------------|
+| \(a\) 0.10 | \(b\) 0.05 | \(c\) 0.025 | \(d\) 0.01 | \(e\) None of the above |
+
+## Problem 2.15
+
+**Problem Statement:**
+
+Two-Sample t-Test and Cl: Y1, Y2
+
+```         
+Two-sample T for Y1 vs Y2
+Mean Std. Dev. SE Mean
+Y1 20 50.19 1.71 0.38
+Y2 20 52.52 2.48 0.55
+Difference = mu (X1) - mu (X2)
+Estimate for difference: -2.33341
+95% CI for difference: (-3.69547, -0.97135)
+T-Test of difference = 0 (vs not =): T-Value = -3.47
+P-Value = 0.001 DF = 38
+Both use Pooled Std. Dev. = 2.1277 
+```
+
+\(a\) Can the null hypothesis be rejected at the 0.05 level? Why?
+
+\(b\) Is this a one-sided or a two-sided test?
+
+\(c\) If the hypotheses had been $H_0:μ_1-μ_2=2$ versus $H_1:μ_1-μ_2\neq2$, would you reject the null hypothesis at the 0.05 level?
+
+\(d\) If the hypotheses had been $H_0:μ_1-μ_2=2$ versus $H_1:μ_1-μ_2<2$, would you reject the null hypothesis at the 0.05 level? Can you answer this question without doing any additional calculations? Why?
+
+\(e\) Use the output and the t table to find a 95 percent upper confidence bound on the difference in means.
+
+\(f\) What is the P-value if the hypotheses are $H_0:μ_1-μ_2=2$ versus $H_1:μ_1-μ_2\neq2$?
+
+## Problem 2.19
+
+**Problem Statement:**
+
+The shelf life of a carbonated beverage is of interest. Ten bottles are randomly selected and tested, and the following results are obtained:
+
+\(a\) We would like to demonstrate that the mean shelf lifeexceeds 120 days. Set up appropriate hypotheses for investigating this claim.
+
+\(b\) Test these hypotheses using a = 0.01. What are your conclusions?
+
+\(c\) Find the P-value for the test in part (b).
+
+\(d\) Construct a 99 percent confidence interval on the meanshelf life.
+
+## Problem 2.20
+
+**Problem Statement:**
+
+A
+
+## Problem 2.21
+
+**Problem Statement:**
+
+A
+
+## Problem 2.23
+
+**Problem Statement:**
+
+A
+
+## Problem 2.25
+
+**Problem Statement:**
+
+A
+
+## Problem 2.29
+
+**Problem Statement:**
+
+A

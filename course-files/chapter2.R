@@ -11,7 +11,7 @@ var(Table2.1$UnmodifiedMortar)
 qt(0.025,18) #quickly demonstrate t-values from Table II (lower)
 qt(0.975,18) #quickly demonstrate t-values from Table II (upper)
 t.test(Table2.1$ModifiedMortar, Table2.1$UnmodifiedMortar) #Welch two sample t-test
-t.test(Table2.1$ModifiedMortar, Table2.1$UnmodifiedMortar,var.equal=TRUE) #Traditional t-test
+t.test(Table2.1$ModifiedMortar, Table2.1$UnmodifiedMortar, var.equal=TRUE) #Traditional t-test
 t.test(Table2.1$ModifiedMortar, Table2.1$UnmodifiedMortar, var.equal = TRUE,conf.level = 0.99) #Conf interval to 99, try others%!!
 t.test(Table2.1$ModifiedMortar, Table2.1$UnmodifiedMortar, var.equal = TRUE,conf.level = 0.95,alternative="greater") # this one is stupid because we can see that modified is stronger than unmodified!
 t.test(Table2.1$ModifiedMortar, Table2.1$UnmodifiedMortar, var.equal = TRUE,conf.level = 0.95,alternative="less")
