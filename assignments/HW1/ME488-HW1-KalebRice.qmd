@@ -111,6 +111,10 @@ Both use Pooled Std. Dev. = 2.1277
 
 The shelf life of a carbonated beverage is of interest. Ten bottles are randomly selected and tested, and the following results are obtained:
 
+```         
+[insert data here]
+```
+
 \(a\) We would like to demonstrate that the mean shelf lifeexceeds 120 days. Set up appropriate hypotheses for investigating this claim.
 
 \(b\) Test these hypotheses using a = 0.01. What are your conclusions?
