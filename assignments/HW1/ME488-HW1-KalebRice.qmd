@@ -112,7 +112,8 @@ Both use Pooled Std. Dev. = 2.1277
 The shelf life of a carbonated beverage is of interest. Ten bottles are randomly selected and tested, and the following results are obtained:
 
 ```         
-[insert data here]
+Shelf Life (days)
+108, 124, 124, 106, 115, 138, 163, 159, 134, 139
 ```
 
 \(a\) We would like to demonstrate that the mean shelf lifeexceeds 120 days. Set up appropriate hypotheses for investigating this claim.
@@ -127,28 +128,82 @@ The shelf life of a carbonated beverage is of interest. Ten bottles are randomly
 
 **Problem Statement:**
 
-A
+Consider the shelf life data in Problem 2.19. Can shelf life be a described or modeled adequately by a normal distribution? What effect would the violation of this assumption have on the test procedure you used in solving Problem 2.15?
 
 ## Problem 2.21
 
 **Problem Statement:**
 
-A
+The time to repair an electronic instrument is a normally distributed variable measured in hours. The repair times for 16 such instruments chosen at random are as follows:
+
+\(a\) You wish to know if the mean repair time exceeds 225 hours. Set up appropriate hypotheses for investigating this issue.
+
+\(b\) Test the hypotheses you formulated in part (a). What are your conclusions? Use $\alpha=0.05$.
+
+\(c\) Find the P-value for the test.
+
+\(d\) Construct a 95% confidence interval on mean repair time.
+
+```         
+Hours
+159, 224, 222, 149, 280, 379, 362, 260, 101, 179, 168, 485, 212, 264, 250, 170
+```
 
 ## Problem 2.23
 
 **Problem Statement:**
 
-A
+Two machines are used for filling plastic bottles with a net volume of 16.0 ounces. The filling processes can be assumed to be normal, with standard deviations of $\sigma_1=0.015$ and $\sigma_2=0.018$. The quality engineering department suspects that both machines fill to the same net volume, whether or not this volume is 16.0 ounces. An experiment is performed by taking a random sample form the output of each machine.
+
+\(a\) State the hypotheses that should be tested in this experiment.
+
+\(b\) Test these hypotheses using $\alpha=0.05$. What are your conclusions?
+
+\(c\) Find the P-Value for this test.
+
+\(d\) Find a 95% confidence interval on the difference in mean fill volume for the two machines.
+
+```{r}
+#| echo: false
+library(readxl)
+problemData <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "E3:F13")
+knitr::kable(problemData, format = "pipe", align = 'c')
+```
 
 ## Problem 2.25
 
 **Problem Statement:**
 
-A
+The following are the burning times (in minutes) of chemical flares of two different formulations. The design engineer are interested in both the mean and variance of the burning times.
+
+\(a\) Test the hypothesis that the two variances are equal. Use $\alpha=0.05$.
+
+\(b\) Using the results of (a), test the hypothesis that the mean burning times are equal. Use $\alpha=0.05$. What is the P-value for this test?
+
+\(c\) Discuss the role of the normality assumption in this problem. Check the assumption of normality for both types of flares.
+
+```{r}
+#| echo: false
+library(readxl)
+problemData <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "H3:I13")
+knitr::kable(problemData, format = "pipe", align = 'c')
+```
 
 ## Problem 2.29
 
 **Problem Statement:**
 
-A
+The diameter of a ball bearing was measured by 12 inspectors, each using two different kinds of calipers. The results are as follows:
+
+\(a\) Is there a significant difference between the means of the population of measurements from which the two samples were selected? Use $\alpha=0.05$.
+
+\(b\) Find the P-value for the test in part (a).
+
+\(c\) Construct a 95% confidence interval on the difference in mean diameter measurements for the two types of calipers.
+
+```{r}
+#| echo: false
+library(readxl)
+problemData <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "T3:U15")
+knitr::kable(problemData, format = "pipe", align = 'c')
+```
