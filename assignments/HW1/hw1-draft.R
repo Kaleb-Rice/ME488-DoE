@@ -27,3 +27,15 @@ sampData <- data.frame(aa = variableName,
                       hh = maxResult)
 colnames(sampData) <- c("Variable", "N", "Mean", "SE Mean", "Std. Dev.", "Variance", "Minimum", "Maximum")
 sampData
+
+
+# Problem 2.7
+p7Data = c(9.37, 13.04, 11.69, 8.21, 11.18, 10.41, 13.15, 11.51, 13.21, 7.75)
+sprintf("Mean: %.3f", mean(p7Data))
+sprintf("Standard Deviation: %.3f", sd(p7Data))
+qqnorm(p7Data)
+qqline(p7Data, col = "red", lwd = 2)
+hist(p7Data, xlab = "Value", col = "gray", border = "black",
+     main = "Histogram of Problem 2.7 Data",
+     xlim = c(0, 20), ylim = c(0, 5), breaks = 5)
+t.test(p7Data, mu = 10) # Defaults to two-sided 95% confidence test
