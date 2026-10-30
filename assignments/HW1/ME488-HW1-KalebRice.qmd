@@ -130,6 +130,26 @@ A two-sample t-test has been conducted and the sample sizes are $n_1 = n_2 = 10$
 |------------|------------|-------------|------------|-------------------------|
 | \(a\) 0.10 | \(b\) 0.05 | \(c\) 0.025 | \(d\) 0.01 | \(e\) None of the above |
 
+**Solution:**
+
+First I want to find out what P-value is associated with $t_0$. Since each sample has $n-1$ degrees of freedom, the combined degrees of freedom for the two sample t-test is 18. I can then use R's distribution function to determine the P-value of $t_0$ approached from the upper tail.
+
+```{r}
+pt(2.15, df = 18, lower.tail = FALSE)
+```
+
+This function outputs the associated P-value as 0.0227. The nearest upper bound from the list of answers in the problem statement is 0.025. Testing this P-value with R's quantile function yields the following t-value:
+
+```{r}
+qt(0.025, df = 18, lower.tail = FALSE)
+```
+
+As expected, this t-value is lower than $t_0$ because $P=0.025$ contains a slightly smaller portion of the distribution.
+
+**Conclusion:**
+
+`(c) 0.025` is the most reasonable upper bound for the P-value.
+
 ## Problem 2.15
 
 **Problem Statement:**
