@@ -329,7 +329,7 @@ p19Data <- c(108, 124, 124, 106, 115, 138, 163, 159, 134, 139)
 t.test(p19Data, mu = 120, conf.level = .99)
 ```
 
-The 99% confidence interval puts the mean somewhere between 110.914 and 151.086
+The 99% confidence interval puts the mean somewhere between 110.91 and 151.09
 
 {{< pagebreak >}}
 
@@ -338,6 +338,12 @@ The 99% confidence interval puts the mean somewhere between 110.914 and 151.086
 **Problem Statement:**
 
 Consider the shelf life data in Problem 2.19. Can shelf life be a described or modeled adequately by a normal distribution? What effect would the violation of this assumption have on the test procedure you used in solving Problem 2.15?
+
+**Solution:**
+
+Assuming ideal conditions like a consistent climate controlled environment, it makes sense to model shelf life as a normal distribution because most food spoils around the same time without trending towards shorter or longer times.
+
+Violating this assumption would mean that my previous solution process is invalid since the t-test used was meant for a normal distribution, also invalidating further analysis based on that test.
 
 {{< pagebreak >}}
 
@@ -360,6 +366,34 @@ Hours
 159, 224, 222, 149, 280, 379, 362, 260, 101, 179, 168, 485, 212, 264, 250, 170
 ```
 
+**Solution:**
+
+**(a)**
+
+My hypotheses are $H_0:μ=225$ and $H_1:μ>225$
+
+**(b)**
+
+```{r}
+p21Data <- c(159, 224, 222, 149, 280, 379, 362, 260, 101, 179, 168, 485, 212, 264, 250, 170)
+t.test(p21Data, alternative = "greater", mu = 225)
+```
+
+**(c)**
+
+$p=0.257$
+
+{{< pagebreak >}}
+
+**(d)**
+
+```{r}
+p21Data <- c(159, 224, 222, 149, 280, 379, 362, 260, 101, 179, 168, 485, 212, 264, 250, 170)
+t.test(p21Data, mu = 225)
+```
+
+The 95% confidence interval puts the mean somewhere between 188.89 and 294.11
+
 {{< pagebreak >}}
 
 ## Problem 2.23
@@ -379,9 +413,46 @@ Two machines are used for filling plastic bottles with a net volume of 16.0 ounc
 ```{r}
 #| echo: false
 library(readxl)
-problemData <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "E3:F13")
-knitr::kable(problemData, format = "pipe", align = 'c')
+p23Data <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "E3:F13")
+knitr::kable(p23Data, format = "pipe", align = 'c')
 ```
+
+**Solution:**
+
+**(a)**
+
+$H_0:μ_1-μ_2=0$ versus $H_1:μ_1-μ_2\neq0$,
+
+{{< pagebreak >}}
+
+**(b)**
+
+```{r}
+#| message: false
+#| warning: false
+# Import libraries and problem data
+library(BSDA)
+library(readxl)
+p23Data <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "E3:F13")
+
+z.test(
+  p23Data[1],
+  p23Data[2],
+  sigma.x = 0.015,
+  sigma.y = 0.018,
+  mu = 0,
+  alternative = "two.sided",
+  conf.level = 0.95
+)
+```
+
+**(c)**
+
+$p=0.1771$
+
+**(d)**
+
+The 95% confidence interval puts the mean somewhere between -0.00452 and 0.0245
 
 {{< pagebreak >}}
 
@@ -400,9 +471,54 @@ The following are the burning times (in minutes) of chemical flares of two diffe
 ```{r}
 #| echo: false
 library(readxl)
-problemData <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "H3:I13")
-knitr::kable(problemData, format = "pipe", align = 'c')
+p25Data <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "H3:I13")
+knitr::kable(p25Data, format = "pipe", align = 'c')
 ```
+
+**Solution:**
+
+**(a)**
+
+```{r}
+library(readxl)
+p25Data <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "H3:I13")
+
+var.test(p25Data[[1]], p25Data[[2]])
+```
+
+$p=0.9744$ which is significantly greater than $\alpha=0.05$, so we fail to reject the null hypothesis of $H_0:\sigma_1^2=\sigma_2^2$, which suggests that the two variances may be equal.
+
+**(b)**
+
+Because we can't reject the null hypothesis, it is fair to continue with the assumption that the variances are equal. This information can be used in a subsequent t-test to test if there is difference between the means.
+
+```{r}
+library(readxl)
+p25Data <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "H3:I13")
+
+t.test(p25Data[[1]], p25Data[[2]], var.equal = TRUE)
+```
+
+$p=0.9622$, which is significantly greater than 0.05, so we fail to reject the null hypothesis that the means differ.
+
+**(c)**
+
+```{r}
+library(readxl)
+p25Data <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "H3:I13")
+
+par(mfrow = c(1, 2))
+
+qqnorm(p25Data[[1]], main = "Type 1")
+qqline(p25Data[[1]])
+
+qqnorm(p25Data[[2]], main = "Type 2")
+qqline(p25Data[[2]])
+
+par(mfrow = c(1, 1))
+```
+
+Both the F and T test rely on normally distributed data to be reliable. Plotting the normal QQ plots for each flare (shown above), they each appear to be normally distributed, meaning this data can be trusted.
 
 {{< pagebreak >}}
 
@@ -421,6 +537,30 @@ The diameter of a ball bearing was measured by 12 inspectors, each using two dif
 ```{r}
 #| echo: false
 library(readxl)
-problemData <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "T3:U15")
-knitr::kable(problemData, format = "pipe", align = 'c')
+p29Data <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "T3:U15")
+knitr::kable(p29Data, format = "pipe", align = 'c')
 ```
+
+{{< pagebreak >}}
+
+**Solution:**
+
+**(a)**
+
+```{r}
+# Import problem data
+library(readxl)
+p29Data <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "T3:U15")
+
+t.test(p29Data[[1]], p29Data[[2]], paired = TRUE)
+```
+
+$p=0.6742$, which is significantly greater than 0.05, so we fail to reject the null hypothesis that the means are different.
+
+**(b)**
+
+$p=0.6742$
+
+**(c)**
+
+The 95% confidence interval puts the mean somewhere between -0.00102 and 0.00152
