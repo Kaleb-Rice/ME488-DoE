@@ -20,6 +20,8 @@ editor: visual
 | 2.25 | Two-sample inference / practical interpretation          |
 | 2.29 | Two-sample engineering experiment                        |
 
+{{< pagebreak >}}
+
 ## Problem 2.1
 
 **Problem Statement:**
@@ -55,6 +57,19 @@ knitr::kable(p1Data, format = "pipe", align = 'c')
 **Solution:**
 
 ```{r}
+# Import relevant data from problem statement
+nn <- c(9)
+stdDevResult <- c(3.12)
+
+# Calculate SE Mean and variance
+SEM <- stdDevResult/sqrt(nn)
+variance <- stdDevResult^2
+```
+
+**Conclusion:**
+
+```{r}
+#| echo: false
 # Create table of data from problem statement
 variableName <- c("Y")
 nn <- c(9)
@@ -86,6 +101,8 @@ p1Data[6] <- variance
 knitr::kable(p1Data, format = "pipe", align = 'c')
 ```
 
+{{< pagebreak >}}
+
 ## Problem 2.7
 
 **Problem Statement:**
@@ -110,6 +127,8 @@ qqline(p7Data)
 
 Plotting the normal QQ plot suggests that the data set is normally distributed, although the 13.21 data point is a slight outlier. Continuing with the assumption that the data is normally distributed, I will run a one-sample two-sided t-test with a standard 95% confidence interval in order to test if the mean of 10 lies inside the normally distributed data.
 
+{{< pagebreak >}}
+
 ```{r}
 t.test(p7Data, mu = 10) # Defaults to two-sided 95% confidence test
 ```
@@ -119,6 +138,8 @@ The t-test tells us that there is a 95% chance that the mean is between 9.52 and
 **Conclusion:**
 
 It is statistically likely that the data set is normally distributed and that the mean does not differ from 10.
+
+{{< pagebreak >}}
 
 ## Problem 2.10
 
@@ -144,11 +165,13 @@ This function outputs the associated P-value as 0.0227. The nearest upper bound 
 qt(0.025, df = 18, lower.tail = FALSE)
 ```
 
-As expected, this t-value is lower than $t_0$ because $P=0.025$ contains a slightly smaller portion of the distribution.
+As expected, this t-value is lower than $t_0$ because $p=0.025$ contains a slightly smaller portion of the distribution.
 
 **Conclusion:**
 
 `(c) 0.025` is the most reasonable upper bound for the P-value.
+
+{{< pagebreak >}}
 
 ## Problem 2.15
 
@@ -158,7 +181,7 @@ Two-Sample t-Test and Cl: Y1, Y2
 
 ```         
 Two-sample T for Y1 vs Y2
-Mean Std. Dev. SE Mean
+    n Mean Std. Dev. SE Mean
 Y1 20 50.19 1.71 0.38
 Y2 20 52.52 2.48 0.55
 Difference = mu (X1) - mu (X2)
@@ -181,6 +204,86 @@ Both use Pooled Std. Dev. = 2.1277
 
 \(f\) What is the P-value if the hypotheses are $H_0:μ_1-μ_2=2$ versus $H_1:μ_1-μ_2\neq2$?
 
+**Solution:**
+
+**(a):**
+
+The P-value of 0.001 is less than the significance level of $\alpha=0.05$, so I would reject the null hypothesis.
+
+**(b):**
+
+This is a two-sided t-test because it is testing if the alternative hypothesis is not equal to zero, meaning that it is testing both if the the hypothesis is greater than or less than 0.
+
+**(c):**
+
+Because the hypothesis has changed, I need to calculate a new test statistic to compare against. Equation 2.24 from our textbook (Douglas C. Montgomery - Design and Analysis of Experiments 10th Ed.) calculates the test statistic for the hypothesis $H_0:μ_1-μ_2=0$:
+
+$$t_0=\frac{(\bar{y}_1-\bar{y}_2)}{S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
+
+This equation can be modified to test $H_0:μ_1-μ_2=2$ by offsetting the difference of the means:
+
+$$t_0=\frac{(\bar{y}_1-\bar{y}_2)-\Delta}{S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
+
+Then we can use the new value for $t_0$ to calculate the two-sided P-value to either reject or fail the reject the new null hypothesis.
+
+```{r}
+# Given information
+difference <- -2.33341
+pooled_sd <- 2.1277
+n1 <- 20
+n2 <- 20
+delta <- 2
+
+# Calculate new t-statistic
+t0 <- (difference - delta) / (pooled_sd * sqrt(1/n1 + 1/n2))
+
+# Calculate two-sided P-value
+2 * pt(-abs(t0), df = 38)
+```
+
+The new P-value is significantly less than 0.05, so the I reject the null hypothesis.
+
+**(d):**
+
+The null hypothesis has not changed from the part (c), the it can once again be rejected using the same calculation from before. The new alternative hypothesis is left-handed because it states that the difference of the means is less than 2. This alternative hypothesis is supported by the original 95% confidence interval that the difference was between -3.69547 and -0.97135.
+
+**(e):**
+
+We can calculate an upperbound at a 95% confidence interval using equation 2.30 from the textbook:
+
+$$\mu_1-\mu_2 \leq\bar{y}_1-\bar{y}_2+t_{\alpha/2,n_1+n_2-2}S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$$
+
+```{r}
+# Given information
+difference <- -2.33341
+pooled_sd <- 2.1277
+n1 <- 20
+n2 <- 20
+
+t_a <- qt(0.95, df=38)
+
+upBound <- difference + t_a * (pooled_sd * sqrt(1/n1 + 1/n2))
+upBound
+```
+
+**(f):**
+
+I will calculate the new two-sided P-Value using the t-value I calculated in part (c)
+
+```{r}
+# Given information
+difference <- -2.33341
+pooled_sd <- 2.1277
+n1 <- 20
+n2 <- 20
+delta <- 2
+
+t0 <- (difference - delta) / (pooled_sd * sqrt(1/n1 + 1/n2))
+2 * pt(-abs(t0), 38)
+```
+
+{{< pagebreak >}}
+
 ## Problem 2.19
 
 **Problem Statement:**
@@ -192,19 +295,23 @@ Shelf Life (days)
 108, 124, 124, 106, 115, 138, 163, 159, 134, 139
 ```
 
-\(a\) We would like to demonstrate that the mean shelf lifeexceeds 120 days. Set up appropriate hypotheses for investigating this claim.
+\(a\) We would like to demonstrate that the mean shelf life exceeds 120 days. Set up appropriate hypotheses for investigating this claim.
 
 \(b\) Test these hypotheses using a = 0.01. What are your conclusions?
 
 \(c\) Find the P-value for the test in part (b).
 
-\(d\) Construct a 99 percent confidence interval on the meanshelf life.
+\(d\) Construct a 99 percent confidence interval on the mean shelf life.
+
+{{< pagebreak >}}
 
 ## Problem 2.20
 
 **Problem Statement:**
 
 Consider the shelf life data in Problem 2.19. Can shelf life be a described or modeled adequately by a normal distribution? What effect would the violation of this assumption have on the test procedure you used in solving Problem 2.15?
+
+{{< pagebreak >}}
 
 ## Problem 2.21
 
@@ -224,6 +331,8 @@ The time to repair an electronic instrument is a normally distributed variable m
 Hours
 159, 224, 222, 149, 280, 379, 362, 260, 101, 179, 168, 485, 212, 264, 250, 170
 ```
+
+{{< pagebreak >}}
 
 ## Problem 2.23
 
@@ -246,6 +355,8 @@ problemData <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range =
 knitr::kable(problemData, format = "pipe", align = 'c')
 ```
 
+{{< pagebreak >}}
+
 ## Problem 2.25
 
 **Problem Statement:**
@@ -264,6 +375,8 @@ library(readxl)
 problemData <- read_excel("../homework_data.xlsx", sheet = "Chapter 02", range = "H3:I13")
 knitr::kable(problemData, format = "pipe", align = 'c')
 ```
+
+{{< pagebreak >}}
 
 ## Problem 2.29
 
