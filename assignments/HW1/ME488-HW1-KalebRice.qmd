@@ -303,6 +303,34 @@ Shelf Life (days)
 
 \(d\) Construct a 99 percent confidence interval on the mean shelf life.
 
+**Solution:**
+
+**(a)**
+
+My hypotheses are $H_0:μ=120$ and $H_1:μ>120$
+
+**(b)**
+
+```{r}
+p19Data <- c(108, 124, 124, 106, 115, 138, 163, 159, 134, 139)
+t.test(p19Data, alternative = "greater", mu = 120, conf.level = .99)
+```
+
+**(c)**
+
+$p=0.05441$
+
+**(d)**
+
+My last t-test used a one-sided t-test. In order to calculate a realistic range for possible means with the existing data set, I will switch to using a two-sided test to calculate the confidence interval.
+
+```{r}
+p19Data <- c(108, 124, 124, 106, 115, 138, 163, 159, 134, 139)
+t.test(p19Data, mu = 120, conf.level = .99)
+```
+
+The 99% confidence interval puts the mean somewhere between 110.914 and 151.086
+
 {{< pagebreak >}}
 
 ## Problem 2.20
