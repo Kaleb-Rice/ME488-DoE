@@ -1,0 +1,166 @@
+---
+title: "ME488 Homework 2"
+author: "Kaleb Rice"
+format: typst
+editor: visual
+---
+
+## Chapter 10 Problems
+
+- 10.1S
+
+- 10.2
+
+- 10.4
+
+- 10.5S
+
+- 10.6
+
+- 10.9
+
+{{< pagebreak >}}
+
+## Problem 10.1S
+
+**Problem Statement:**
+
+the
+
+**Solution:**
+
+```{r}
+# Import relevant data from problem statement
+nn <- c(9)
+stdDevResult <- c(3.12)
+
+# Calculate SE Mean and variance
+SEM <- stdDevResult/sqrt(nn)
+variance <- stdDevResult^2
+```
+
+**Conclusion:**
+
+the
+
+{{< pagebreak >}}
+
+## Problem 10.2
+
+**Problem Statement:**
+
+the
+
+**Solution:**
+
+```{r}
+# Import relevant data from problem statement
+nn <- c(9)
+stdDevResult <- c(3.12)
+
+# Calculate SE Mean and variance
+SEM <- stdDevResult/sqrt(nn)
+variance <- stdDevResult^2
+```
+
+**Conclusion:**
+
+the
+
+{{< pagebreak >}}
+
+## Problem 10.4
+
+**Problem Statement:**
+
+the
+
+**Solution:**
+
+```{r}
+# Import relevant data from problem statement
+nn <- c(9)
+stdDevResult <- c(3.12)
+
+# Calculate SE Mean and variance
+SEM <- stdDevResult/sqrt(nn)
+variance <- stdDevResult^2
+```
+
+**Conclusion:**
+
+the
+
+{{< pagebreak >}}
+
+## Problem 10.5S
+
+**Problem Statement:**
+
+the
+
+**Solution:**
+
+```{r}
+# Import relevant data from problem statement
+nn <- c(9)
+stdDevResult <- c(3.12)
+
+# Calculate SE Mean and variance
+SEM <- stdDevResult/sqrt(nn)
+variance <- stdDevResult^2
+```
+
+**Conclusion:**
+
+the
+
+{{< pagebreak >}}
+
+## Problem 10.6
+
+**Problem Statement:**
+
+the
+
+**Solution:**
+
+```{r}
+# Import relevant data from problem statement
+nn <- c(9)
+stdDevResult <- c(3.12)
+
+# Calculate SE Mean and variance
+SEM <- stdDevResult/sqrt(nn)
+variance <- stdDevResult^2
+```
+
+**Conclusion:**
+
+the
+
+{{< pagebreak >}}
+
+## Problem 10.9
+
+**Problem Statement:**
+
+the
+
+**Solution:**
+
+```{r}
+# Import relevant data from problem statement
+nn <- c(9)
+stdDevResult <- c(3.12)
+
+# Calculate SE Mean and variance
+SEM <- stdDevResult/sqrt(nn)
+variance <- stdDevResult^2
+```
+
+**Conclusion:**
+
+the
+
+{{< pagebreak >}}
