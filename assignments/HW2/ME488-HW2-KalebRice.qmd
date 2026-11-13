@@ -7,13 +7,13 @@ editor: visual
 
 ## Chapter 10 Problems
 
-- 10.1S
+- 10.1
 
 - 10.2
 
 - 10.4
 
-- 10.5S
+- 10.5
 
 - 10.6
 
@@ -21,25 +21,38 @@ editor: visual
 
 {{< pagebreak >}}
 
-## Problem 10.1S
+## Problem 10.1
 
-**Problem Statement:**
+### **Problem Statement:**
 
-the
-
-**Solution:**
+The tensile strength of a paper product is related to the amount of hardwood in the pulp. Ten samples are produced in the pilot plant, and the data obtained are shown in the following table.
 
 ```{r}
-# Import relevant data from problem statement
-nn <- c(9)
-stdDevResult <- c(3.12)
-
-# Calculate SE Mean and variance
-SEM <- stdDevResult/sqrt(nn)
-variance <- stdDevResult^2
+#| echo: false
+paper_data <- data.frame(
+  Strength = c(160, 171, 175, 182, 184, 181, 188, 193, 195, 200),
+  Percent_Hardwood = c(10, 15, 15, 20, 20, 20, 25, 25, 28, 30)
+)
+knitr::kable(paper_data, format = "pipe", align = 'c')
 ```
 
-**Conclusion:**
+**(a)** Fit a linear regression model relating strength to percent hardwood.
+
+**(b)** Test the model in part (a) for significance of regression.
+
+**(c)** Find a 95% confidence interval on the parameter $\beta_1$
+
+### **Solution:**
+
+```{r}
+# Import data from problem statement
+paper_data <- data.frame(
+  Strength = c(160, 171, 175, 182, 184, 181, 188, 193, 195, 200),
+  Percent_Hardwood = c(10, 15, 15, 20, 20, 20, 25, 25, 28, 30)
+)
+```
+
+### **Conclusion:**
 
 the
 
@@ -47,23 +60,17 @@ the
 
 ## Problem 10.2
 
-**Problem Statement:**
+### **Problem Statement:**
 
-the
+Plot the residuals from Problem 10.1 and comment on the model adequacy.
 
-**Solution:**
+### **Solution:**
 
 ```{r}
-# Import relevant data from problem statement
-nn <- c(9)
-stdDevResult <- c(3.12)
 
-# Calculate SE Mean and variance
-SEM <- stdDevResult/sqrt(nn)
-variance <- stdDevResult^2
 ```
 
-**Conclusion:**
+### **Conclusion:**
 
 the
 
@@ -71,47 +78,79 @@ the
 
 ## Problem 10.4
 
-**Problem Statement:**
+### **Problem Statement:**
 
-the
-
-**Solution:**
+A study was performed on wear of a bearing $y$ and its relationship to $x_1=$ oil viscosity and $x_2=$ load. The following data were obtained:
 
 ```{r}
-# Import relevant data from problem statement
-nn <- c(9)
-stdDevResult <- c(3.12)
-
-# Calculate SE Mean and variance
-SEM <- stdDevResult/sqrt(nn)
-variance <- stdDevResult^2
+#| echo: false
+bearing_data <- data.frame(
+  y = c(193, 230, 172, 91, 113, 125),
+  x1 = c(1.6, 15.5, 22.0, 43.0, 33.0, 40.0),
+  x2 = c(851, 816, 1058, 1201, 1357, 1115)
+)
+knitr::kable(bearing_data, format = "pipe", align = 'c')
 ```
 
-**Conclusion:**
+**(a)** Fit a multiple linear regression model to the data.
+
+**(b)** Test for significance of regression.
+
+**(c)** Compute $t$ statistics for each model parameter. What conclusions can you draw?
+
+### **Solution:**
+
+```{r}
+# Import data from problem statement
+bearing_data <- data.frame(
+  y = c(193, 230, 172, 91, 113, 125),
+  x1 = c(1.6, 15.5, 22.0, 43.0, 33.0, 40.0),
+  x2 = c(851, 816, 1058, 1201, 1357, 1115)
+)
+```
+
+### **Conclusion:**
 
 the
 
 {{< pagebreak >}}
 
-## Problem 10.5S
+## Problem 10.5
 
-**Problem Statement:**
+### **Problem Statement:**
 
-the
-
-**Solution:**
+The brake horsepower developed by an automobile engine on a dynamometer is thought to be a function of the engine speed in revolutions per minute (rpm), the road octane number of the fuel, and the engine compression. An experiment is run in the laboratory and the that follow are collected:
 
 ```{r}
-# Import relevant data from problem statement
-nn <- c(9)
-stdDevResult <- c(3.12)
-
-# Calculate SE Mean and variance
-SEM <- stdDevResult/sqrt(nn)
-variance <- stdDevResult^2
+#| echo: false
+engine_data <- data.frame(
+  Brake_Horsepower   = c(225, 212, 229, 222, 219, 278, 246, 237, 233, 224, 223, 230),
+  rpm                = c(2000, 1800, 2400, 1900, 1600, 2500, 3000, 3200, 2800, 3400, 1800, 2500),
+  Road_Octane_Number = c(90, 94, 88, 91, 86, 96, 94, 90, 88, 86, 90, 89),
+  Compression        = c(100, 95, 110, 96, 100, 110, 98, 100, 105, 97, 100, 104)
+)
+knitr::kable(engine_data, format = "pipe", align = 'c')
 ```
 
-**Conclusion:**
+**(a)** Fit a multiple regression model to these data.
+
+**(b)** Test for significance of regression. What conclusions can you draw?
+
+**(c)** Based on $t$-tests, do you need all three regressor variables in the model?
+
+### **Solution:**
+
+```{r}
+# Import data from problem statement
+engine_data <- data.frame(
+  Brake_Horsepower   = c(225, 212, 229, 222, 219, 278, 246, 237, 233, 224, 223, 230),
+  rpm                = c(2000, 1800, 2400, 1900, 1600, 2500, 3000, 3200, 2800, 3400, 1800, 2500),
+  Road_Octane_Number = c(90, 94, 88, 91, 86, 96, 94, 90, 88, 86, 90, 89),
+  Compression        = c(100, 95, 110, 96, 100, 110, 98, 100, 105, 97, 100, 104)
+)
+```
+
+### **Conclusion:**
 
 the
 
@@ -119,23 +158,17 @@ the
 
 ## Problem 10.6
 
-**Problem Statement:**
+### **Problem Statement:**
 
-the
+Analyze the residuals from the regression model in Problem 10.5. Comment on model adequacy.
 
 **Solution:**
 
 ```{r}
-# Import relevant data from problem statement
-nn <- c(9)
-stdDevResult <- c(3.12)
 
-# Calculate SE Mean and variance
-SEM <- stdDevResult/sqrt(nn)
-variance <- stdDevResult^2
 ```
 
-**Conclusion:**
+### **Conclusion:**
 
 the
 
@@ -143,24 +176,37 @@ the
 
 ## Problem 10.9
 
-**Problem Statement:**
+### **Problem Statement:**
 
-the
-
-**Solution:**
+Given the following data, fit the second-order polynomial regression model
 
 ```{r}
-# Import relevant data from problem statement
-nn <- c(9)
-stdDevResult <- c(3.12)
-
-# Calculate SE Mean and variance
-SEM <- stdDevResult/sqrt(nn)
-variance <- stdDevResult^2
+#| echo: false
+p10Data <- data.frame(
+  y  = c(26, 24, 175, 160, 163, 55, 62, 100, 26, 30, 70, 71),
+  x1 = c(1.0, 1.0, 1.5, 1.5, 1.5, 0.5, 1.5, 0.5, 1.0, 0.5, 1.0, 0.5),
+  x2 = c(1.0, 1.0, 4.0, 4.0, 4.0, 2.0, 2.0, 3.0, 1.5, 1.5, 2.5, 2.5)
+)
+knitr::kable(p10Data, format = "pipe", align = 'c')
 ```
 
-**Conclusion:**
+$$
+y=\beta_0+\beta_1x_1+\beta_2x_2+\beta_{11}x^2_1+\beta_{22}x^2_2+\beta_{12}x_1x_2+\epsilon
+$$
+
+After you have fit the model, test for significance of regression.
+
+### **Solution:**
+
+```{r}
+# Import data from problem statement
+p10Data <- data.frame(
+  y  = c(26, 24, 175, 160, 163, 55, 62, 100, 26, 30, 70, 71),
+  x1 = c(1.0, 1.0, 1.5, 1.5, 1.5, 0.5, 1.5, 0.5, 1.0, 0.5, 1.0, 0.5),
+  x2 = c(1.0, 1.0, 4.0, 4.0, 4.0, 2.0, 2.0, 3.0, 1.5, 1.5, 2.5, 2.5)
+)
+```
+
+### **Conclusion:**
 
 the
-
-{{< pagebreak >}}
