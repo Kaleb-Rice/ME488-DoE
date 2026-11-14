@@ -320,12 +320,38 @@ Analyze the residuals from the regression model in Problem 10.5. Comment on mode
 **Solution:**
 
 ```{r}
+#| eval: false
+plot(engine_data$rpm, residuals(p5Model),
+     xlab = "RPM", ylab = "Residuals")
+abline(h = 0, col = "darkgreen", lwd = 2)
 
+plot(engine_data$Road_Octane_Number, residuals(p5Model),
+     xlab = "Road Octane Number", ylab = "Residuals")
+abline(h = 0, col = "darkgreen", lwd = 2)
+
+plot(engine_data$Compression, residuals(p5Model),
+     xlab = "Compression", ylab = "Residuals")
+abline(h = 0, col = "darkgreen", lwd = 2)
+```
+
+```{r}
+#| echo: false
+plot(engine_data$rpm, residuals(p5Model),
+     xlab = "RPM", ylab = "Residuals")
+abline(h = 0, col = "darkgreen", lwd = 2)
+
+plot(engine_data$Road_Octane_Number, residuals(p5Model),
+     xlab = "Road Octane Number", ylab = "Residuals")
+abline(h = 0, col = "darkgreen", lwd = 2)
+
+plot(engine_data$Compression, residuals(p5Model),
+     xlab = "Compression", ylab = "Residuals")
+abline(h = 0, col = "darkgreen", lwd = 2)
 ```
 
 ### **Conclusion:**
 
-the
+There is not enough data to draw a fully conclusion, but with the data that is available the residuals all seem to be consistently random, without any trends that would suggest that the data would deviate from the linear regression. The linear regression model seems adequate.
 
 {{< pagebreak >}}
 
