@@ -44,17 +44,63 @@ knitr::kable(paper_data, format = "pipe", align = 'c')
 
 ### **Solution:**
 
+**Part (a)**
+
+I begin by fitting a simple linear regression to the data
+
 ```{r}
-# Import data from problem statement
+# Import problem data
 paper_data <- data.frame(
   Strength = c(160, 171, 175, 182, 184, 181, 188, 193, 195, 200),
   Percent_Hardwood = c(10, 15, 15, 20, 20, 20, 25, 25, 28, 30)
 )
+
+# Fit linear regression
+p1Model <- lm(Strength ~ Percent_Hardwood, data = paper_data)
+summary(p1Model)
 ```
 
-### **Conclusion:**
+Substituting the values from the above regression model into the equation $\hat{y}=\beta_0+\beta_1x$, we are left with $\hat{y}=143.82+1.8786x$.
 
-the
+**Part (b)**
+
+In order to test the significance of regression, I need to test if there is a statistical probability that there is a relationship between strength and amount of hardwood. This can be tested with the following hypotheses:
+
+$$
+H_0: \beta_1=0
+$$
+
+$$
+H_1: \beta_1\neq0
+$$
+
+I use the anova function to compute an analysis of variance for the linear regression model, this will report an F-value for the regression that I can then compare with a critical value.
+
+```{r}
+anova(p1Model)
+```
+
+I use the degrees of freedom for each variable in the `anova` report to calculate the critical F-value assuming a standard $\alpha=0.05$.
+
+```{r}
+qf(0.05, 1, 8, lower.tail = FALSE)
+```
+
+The reported F-value of `260` is much greater than `5.317655`, so I reject the null hypothesis. There is a statistically significant linear relationship in this data set.
+
+```{r}
+confint(p1Model, level = 0.95)
+```
+
+The 95% confidence interval for $\beta_1$ is $1.61\leq\beta_1\leq2.15$.
+
+### **Problem 10.1 Conclusion:**
+
+**(a)** The regression model is $\hat{y}=143.82+1.8786x$
+
+**(b)** The regression model shows a significant linear relationship.
+
+**(c)** The 95% confidence interval for $\beta_1$ is $1.61\leq\beta_1\leq2.15$.
 
 {{< pagebreak >}}
 
@@ -90,6 +136,7 @@ bearing_data <- data.frame(
   x2 = c(851, 816, 1058, 1201, 1357, 1115)
 )
 knitr::kable(bearing_data, format = "pipe", align = 'c')
+
 ```
 
 **(a)** Fit a multiple linear regression model to the data.
