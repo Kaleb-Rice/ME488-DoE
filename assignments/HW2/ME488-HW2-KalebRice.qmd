@@ -86,7 +86,9 @@ I use the degrees of freedom for each variable in the `anova` report to calculat
 qf(0.05, 1, 8, lower.tail = FALSE)
 ```
 
-The reported F-value of `260` is much greater than `5.317655`, so I reject the null hypothesis. There is a statistically significant linear relationship in this data set.
+The reported F-value of `260` is much greater than `5.317655`, so I reject the null hypothesis. There is a statistically significant relationship in this data set.
+
+**Part (c)**
 
 ```{r}
 confint(p1Model, level = 0.95)
@@ -98,7 +100,7 @@ The 95% confidence interval for $\beta_1$ is $1.61\leq\beta_1\leq2.15$.
 
 **(a)** The regression model is $\hat{y}=143.82+1.8786x$
 
-**(b)** The regression model shows a significant linear relationship.
+**(b)** The regression model is statistically significant.
 
 **(c)** The 95% confidence interval for $\beta_1$ is $1.61\leq\beta_1\leq2.15$.
 
@@ -112,13 +114,61 @@ Plot the residuals from Problem 10.1 and comment on the model adequacy.
 
 ### **Solution:**
 
-```{r}
+I used the following code to generate various residual plots in order to test:
 
+1.  Are the residuals approximately normally distributed?
+
+2.  Is the relationship linear and is the error variance constant?
+
+3.  Do the residuals show a pattern as hardwood content changes?
+
+```{r}
+#| eval: false
+# Normal probability plot
+qqnorm(residuals(p1Model))
+qqline(residuals(p1Model), col = "darkgreen", lwd = 2)
+
+# Residuals vs. fitted values
+plot(fitted(p1Model), residuals(p1Model),
+     xlab = "Predicted Strength",
+     ylab = "Residuals",
+     main = "Residuals vs. Fitted Values")
+abline(h = 0, col = "darkgreen", lwd = 2)
+
+# Residuals vs. predictor
+plot(paper_data$Percent_Hardwood, residuals(p1Model),
+     xlab = "Percent Hardwood",
+     ylab = "Residuals",
+     main = "Residuals vs. Percent Hardwood")
+abline(h = 0, col = "darkgreen", lwd = 2)
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| echo: false
+# Normal probability plot
+qqnorm(residuals(p1Model))
+qqline(residuals(p1Model), col = "darkgreen", lwd = 2)
+
+# Residuals vs. fitted values
+plot(fitted(p1Model), residuals(p1Model),
+     xlab = "Predicted Strength",
+     ylab = "Residuals",
+     main = "Residuals vs. Fitted Values")
+abline(h = 0, col = "darkgreen", lwd = 2)
+
+# Residuals vs. predictor
+plot(paper_data$Percent_Hardwood, residuals(p1Model),
+     xlab = "Percent Hardwood",
+     ylab = "Residuals",
+     main = "Residuals vs. Percent Hardwood")
+abline(h = 0, col = "darkgreen", lwd = 2)
 ```
 
 ### **Conclusion:**
 
-the
+The Q-Q plot suggests that the residuals are normally distributed. Combining this info with the residuals vs. fitted values plot, it appears that the residuals are truly random with a consistent variance. Plotting the residuals vs. the regression predictor, it follows the same trend as vs. the fitted data. It does not seem like there is any pattern as the hardwood content changes, suggesting that it does not deviate from the linear relationship. These plotted residuals suggest that a linear regression model is appropriate for this data.
 
 {{< pagebreak >}}
 

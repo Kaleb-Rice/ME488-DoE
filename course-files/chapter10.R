@@ -19,7 +19,12 @@ print(anova(model2,model))
 summary(model2) # Just for interest!
 qf(0.05,1,13,lower.tail= FALSE)
 
-print(Table10.3 <- data.frame('y'=Table10.2$Viscosity,'Predicted'=predict(model),'Residual'=resid(model),'StandardizedResids'=rstandard(model),'hii'=hatvalues(model),'StudentizedResids'=rstudent(model),'PRESSResids'=resid(model)/(1-hatvalues(model))))
+print(Table10.3 <- data.frame(
+  'y'=Table10.2$Viscosity,'Predicted'=predict(model),
+  'Residual'=resid(model),'StandardizedResids'=rstandard(model),
+  'hii'=hatvalues(model),'StudentizedResids'=rstudent(model),
+  'PRESSResids'=resid(model)/(1-hatvalues(model))
+  ))
 
 PRESSResids <- resid(model)/(1-hatvalues(model)) #Eqn 10.50
 PRESS <- sum(PRESSResids^2) # PRESS (sum)
