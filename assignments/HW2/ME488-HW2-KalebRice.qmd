@@ -213,7 +213,7 @@ $$
 H_1:\text{At least one of }\beta_1,\beta_2\ne0
 $$
 
-Under the F-statistic section of the regression summary, the P-value is `0.05138`. $0.05138>\alpha=0.05$, so I fail to reject the null hypothesis. The regression is [not]{.underline} statistically significant.
+Under the F-statistic section of the regression summary, the P-value is `0.05138`, which is greater than $\alpha=0.05$, so I fail to reject the null hypothesis. The regression is [not]{.underline} statistically significant.
 
 **Part (c)**
 
@@ -292,8 +292,7 @@ $$
 
 The regression summary from Part (a) reported the F-statistic data. The P-value is `0.00317`, which is below the significance level of $\alpha=0.05$, so I reject the null hypothesis. Overall, at least some part of the regression is statistically significant.
 
-**Part (c)**
-In order to test each $t$-value from the regression summary, I calculate the total degrees of freedom using $df=n-k-1$. We have 12 observations, and 3 predictor variables so we're left with 8 degrees of freedom. I use this to calculate the critical $t$-value at $\alpha=0.05$:
+**Part (c)** In order to test each $t$-value from the regression summary, I calculate the total degrees of freedom using $df=n-k-1$. We have 12 observations, and 3 predictor variables so we're left with 8 degrees of freedom. I use this to calculate the critical $t$-value at $\alpha=0.05$:
 
 ```{r}
 qt(0.975, df = 8)
@@ -372,12 +371,14 @@ knitr::kable(p10Data, format = "pipe", align = 'c')
 ```
 
 $$
-y=\beta_0+\beta_1x_1+\beta_2x_2+\beta_{11}x^2_1+\beta_{22}x^2_2+\beta_{12}x_1x_2+\epsilon
+y_i=\beta_0+\beta_1x_1+\beta_2x_2+\beta_{11}x^2_1+\beta_{22}x^2_2+\beta_{12}x_1x_2+\epsilon
 $$
 
 After you have fit the model, test for significance of regression.
 
 ### **Solution:**
+
+\*Note: ChatGPT was used to troubleshoot the prevention of the `lm()` function from absorbing the quadratic regression terms.
 
 ```{r}
 # Import data from problem statement
@@ -386,8 +387,12 @@ p10Data <- data.frame(
   x1 = c(1.0, 1.0, 1.5, 1.5, 1.5, 0.5, 1.5, 0.5, 1.0, 0.5, 1.0, 0.5),
   x2 = c(1.0, 1.0, 4.0, 4.0, 4.0, 2.0, 2.0, 3.0, 1.5, 1.5, 2.5, 2.5)
 )
+# Fit a multiple regression model, the I() function converts the term to 'as-is'
+p9Model <- lm(y ~ x1 + x2 + I(x1^2) + I(x2^2) + x1:x2,
+            data = p10Data)
+summary(p9Model)
 ```
 
 ### **Conclusion:**
 
-the
+Reading the data from the regression summary yields some meaningful results. $R^2=0.9938$ and $p=1.556\times10^{-06}$, so the regression model fits the data closely and is statistically significant. The $x^2_2$ term with a coefficient $\beta_{22}=11.066$ is of particular interest because it's $t$-statistic $p=0.0128$, meaning that it may influence the regression more than the other regressor variables.
