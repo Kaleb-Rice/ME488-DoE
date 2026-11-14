@@ -60,7 +60,7 @@ p1Model <- lm(Strength ~ Percent_Hardwood, data = paper_data)
 summary(p1Model)
 ```
 
-Substituting the values from the above regression model into the equation $\hat{y}=\beta_0+\beta_1x$, we are left with $\hat{y}=143.82+1.8786x$.
+Substituting the values from the above regression model into the equation $y_i=\beta_0+\beta_1x+\epsilon_i$, we are left with $\hat{y}=143.82+1.8786x$.
 
 **Part (b)**
 
@@ -74,19 +74,7 @@ $$
 H_1: \beta_1\neq0
 $$
 
-I use the anova function to compute an analysis of variance for the linear regression model, this will report an F-value for the regression that I can then compare with a critical value.
-
-```{r}
-anova(p1Model)
-```
-
-I use the degrees of freedom for each variable in the `anova` report to calculate the critical F-value assuming a standard $\alpha=0.05$.
-
-```{r}
-qf(0.05, 1, 8, lower.tail = FALSE)
-```
-
-The reported F-value of `260` is much greater than `5.317655`, so I reject the null hypothesis. There is a statistically significant relationship in this data set.
+The regression summary from Part (a) reported the F-statistic data. The P-value is nearly zero, far below the significance level of $\alpha=0.05$, so I reject the null hypothesis. The regression is statistically significant.
 
 **Part (c)**
 
@@ -166,7 +154,7 @@ plot(paper_data$Percent_Hardwood, residuals(p1Model),
 abline(h = 0, col = "darkgreen", lwd = 2)
 ```
 
-### **Conclusion:**
+### **Problem 10.2 Conclusion:**
 
 The Q-Q plot suggests that the residuals are normally distributed. Combining this info with the residuals vs. fitted values plot, it appears that the residuals are truly random with a consistent variance. Plotting the residuals vs. the regression predictor, it follows the same trend as vs. the fitted data. It does not seem like there is any pattern as the hardwood content changes, suggesting that it does not deviate from the linear relationship. These plotted residuals suggest that a linear regression model is appropriate for this data.
 
@@ -197,6 +185,8 @@ knitr::kable(bearing_data, format = "pipe", align = 'c')
 
 ### **Solution:**
 
+**Part (a)**
+
 ```{r}
 # Import data from problem statement
 bearing_data <- data.frame(
@@ -204,11 +194,44 @@ bearing_data <- data.frame(
   x1 = c(1.6, 15.5, 22.0, 43.0, 33.0, 40.0),
   x2 = c(851, 816, 1058, 1201, 1357, 1115)
 )
+# Fit a multiple linear regression model
+p4Model <- lm(y ~ x1 + x2, data = bearing_data)
+summary(p4Model)
 ```
 
-### **Conclusion:**
+Substituting the values from the above regression model into the equation $y_i=\beta_0+\beta_1x_{1i}+\beta_2x_{2i}+\epsilon_i$, we are left with $y_i=351-1.27x_1-0.154x_2$
 
-the
+**Part (b)**
+
+Similar to Problem 10.1, I will use the reported F-statistic of the model to analyze whether this regression is statistically significant. The hypotheses I am using are:
+
+$$
+H_0:\beta_1=\beta_2=0
+$$
+
+$$
+H_1:\text{At least one of }\beta_1,\beta_2\ne0
+$$
+
+Under the F-statistic section of the regression summary, the P-value is `0.05138`. $0.05138>\alpha=0.05$, so I fail to reject the null hypothesis. The regression is [not]{.underline} statistically significant.
+
+**Part (c)**
+
+The regression summary from Part (a) calculated $t_1=-1.088$ and $t_2=-1.719$. Because we have 6 observations and 2 dependent variables, we only have 3 degrees of freedom. Calculating the critical t-value at an assumed significance level of $\alpha=0.05$:
+
+```{r}
+qt(0.975, df = 3)
+```
+
+Neither t-value is greater than `3.182446` so we fail to reject the null hypothesis for each variable. Neither of the individual slopes in the regression model are significant when tested separately.
+
+### **Problem 10.4 Conclusion:**
+
+**(a)** The regression model is $y_i=351-1.27x_1-0.154x_2$
+
+**(b)** The regression is [not]{.underline} statistically significant. $p=0.05138>\alpha=0.05$
+
+**(c)** $t_1=-1.088$ and $t_2=-1.719$. Neither of the individual slopes in the regression model are significant when tested separately.
 
 {{< pagebreak >}}
 
