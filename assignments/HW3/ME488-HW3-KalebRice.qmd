@@ -1,0 +1,143 @@
+---
+title: "ME488 Homework 3"
+author: "Kaleb Rice"
+format: typst
+editor: visual
+---
+
+## Chapter 3 Problems
+
+- 3.26
+
+- 3.27
+
+- 3.40
+
+- 3.41
+
+{{< pagebreak >}}
+
+## Problem 3.26
+
+### **Problem Statement:**
+
+Four chemists are asked to determine the percentage of methyl alcohol in a certain chemical compound. Each chemist makes three determinations, and the results are the following.
+
+```{r}
+#| echo: false
+# Problem 3.26
+alcohol_data <- data.frame(Chemist = factor(rep(1:4, each = 3)),Methyl_Alcohol = c(
+  84.99, 84.04, 84.38,  # Chemist 1
+  85.15, 85.13, 84.88,  # Chemist 2
+  84.72, 84.48, 85.16,  # Chemist 3
+  84.20, 84.10, 84.55   # Chemist 4
+))
+knitr::kable(alcohol_data, format = "pipe", align = 'c')
+```
+
+**(a)** Do chemists differ significantly? Use $\alpha=0.05$
+
+**(b)** Analyze the residuals from this experiment.
+
+### **Solution:**
+
+**Part (a)**
+
+```{r}
+# Important data from problem statement
+alcohol_data <- data.frame(Chemist = factor(rep(1:4, each = 3)),Methyl_Alcohol = c(
+  84.99, 84.04, 84.38,  # Chemist 1
+  85.15, 85.13, 84.88,  # Chemist 2
+  84.72, 84.48, 85.16,  # Chemist 3
+  84.20, 84.10, 84.55   # Chemist 4
+))
+```
+
+**Part (b)**
+
+### **Problem 3.26 Conclusion:**
+
+**(a)**
+
+**(b)**
+
+{{< pagebreak >}}
+
+## Problem 3.27
+
+### **Problem Statement:**
+
+Three brands of batteries are under study. It is suspected that the lives (in weeks) of the three brands are different. Five randomly selected batteries of each brand are tested with the following results:
+
+```{r}
+#| echo: false
+battery_data <- data.frame(
+  Brand = factor(rep(c("Brand 1", "Brand 2", "Brand 3"), each = 5)),
+  Weeks = c(
+    100, 96, 92, 96, 92,    # Brand 1
+    76, 80, 75, 84, 82,     # Brand 2
+    108, 100, 96, 98, 100   # Brand 3
+  )
+)
+knitr::kable(battery_data, format = "pipe", align = 'c')
+```
+
+**(a)** Are the lives of these brands of batteries different?
+
+**(b)** Analyze the residuals from this experiment.
+
+**(c)** Construct a 95% confidence interval estimate on the mean life of battery brand 2. Construct a 99% confidence interval estimate on the mean difference between the lives of battery brands 2 and 3. Use both Fisher's LSD and Tukey's HSD tests. Comment on any differences between the two estimates. Which estimate should we use and why?
+
+**(d)** Which brand would you select for use? If the manufacturer will replace without charge any battery that fails in less than 85 weeks, what percentage would the company expect to replace?
+
+### **Solution:**
+
+**Part (a)**
+
+```{r}
+# Important data from problem statement
+battery_data <- data.frame(
+  Brand = factor(rep(c("Brand 1", "Brand 2", "Brand 3"), each = 5)),
+  Weeks = c(
+    100, 96, 92, 96, 92,    # Brand 1
+    76, 80, 75, 84, 82,     # Brand 2
+    108, 100, 96, 98, 100   # Brand 3
+  )
+)
+```
+
+**Part (b)**
+
+**Part (c)**
+
+**Part (d)**
+
+### **Problem 3.27 Conclusion:**
+
+**(a)**
+
+**(b)**
+
+**(c)**
+
+**(d)**
+
+## Problem 3.40
+
+### **Problem Statement:**
+
+Use Bartlett's test to determine if the assumption of equal variances is satisfied in Problem 3.27. Use $\alpha=0.05$. Did you reach the same conclusion regarding equality of variances by examining residual plots?
+
+### **Solution:**
+
+### **Problem 3.40 Conclusion:**
+
+## Problem 3.41
+
+### **Problem Statement:**
+
+Use the modified Levene test to determine if the assumption of equal variances is satisfied in Problem 3.27. Use $\alpha=0.05$. Did you reach the same conclusion regarding equality of variances by examining residual plots?
+
+### **Solution:**
+
+### **Problem 3.41 Conclusion:**
